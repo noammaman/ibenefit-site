@@ -58,4 +58,48 @@
       });
     });
   }
+
+  // Project gallery lightbox
+  var galleryButtons = Array.prototype.slice.call(document.querySelectorAll('[data-lightbox]'));
+  if (galleryButtons.length) {
+    var box = document.createElement('div');
+    box.className = 'lightbox';
+    box.setAttribute('role', 'dialog');
+    box.setAttribute('aria-modal', 'true');
+    box.innerHTML = '<button class="lightbox-close" type="button" aria-label="Close">×</button><button class="lightbox-prev" type="button" aria-label="Previous photo">‹</button><img alt=""><button class="lightbox-next" type="button" aria-label="Next photo">›</button>';
+    document.body.appendChild(box);
+    var boxImage = box.querySelector('img');
+    var activeIndex = 0;
+    var closeButton = box.querySelector('.lightbox-close');
+    function showPhoto(index) {
+      activeIndex = (index + galleryButtons.length) % galleryButtons.length;
+      var image = galleryButtons[activeIndex].querySelector('img');
+      boxImage.src = image.src;
+      boxImage.alt = image.alt;
+    }
+    function openBox(index) {
+      showPhoto(index);
+      box.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      closeButton.focus();
+    }
+    function closeBox() {
+      box.classList.remove('open');
+      document.body.style.overflow = '';
+      galleryButtons[activeIndex].focus();
+    }
+    galleryButtons.forEach(function (button, index) {
+      button.addEventListener('click', function () { openBox(index); });
+    });
+    closeButton.addEventListener('click', closeBox);
+    box.querySelector('.lightbox-prev').addEventListener('click', function () { showPhoto(activeIndex - 1); });
+    box.querySelector('.lightbox-next').addEventListener('click', function () { showPhoto(activeIndex + 1); });
+    box.addEventListener('click', function (event) { if (event.target === box) closeBox(); });
+    document.addEventListener('keydown', function (event) {
+      if (!box.classList.contains('open')) return;
+      if (event.key === 'Escape') closeBox();
+      if (event.key === 'ArrowLeft') showPhoto(activeIndex - 1);
+      if (event.key === 'ArrowRight') showPhoto(activeIndex + 1);
+    });
+  }
 })();

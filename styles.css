@@ -159,11 +159,40 @@ section.block{padding:88px 0}
 .founder p{font-size:15px;color:var(--muted)}
 .ph{background:var(--ice-2);border:1px dashed var(--sky);color:var(--blue);border-radius:8px;padding:1px 7px;font-size:13px;font-family:var(--font)}
 
-/* gallery placeholder */
-.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px}
-.gcard{border:1px solid var(--line);border-radius:20px;overflow:hidden;background:#fff}
-.gcard .img{height:180px;background:linear-gradient(135deg,var(--ice),var(--sky));display:flex;align-items:center;justify-content:center;color:var(--blue-d);font-weight:600;font-family:var(--font);font-size:14px}
-.gcard .cap{padding:14px 18px;font-size:14px;color:var(--muted)}
+/* restoration case study */
+.case-study{margin-top:40px}
+.case-head{display:flex;justify-content:space-between;gap:40px;align-items:flex-end;padding-bottom:28px;border-bottom:1px solid #cbdde8}
+.case-head h3,.detail-callout h3{font-family:var(--font);font-size:25px;line-height:1.3;color:var(--midnight);margin-top:7px}
+.case-head p{max-width:460px;color:var(--muted);font-size:16px}
+.case-label{display:inline-block;color:var(--blue);font-family:var(--font);font-size:13px;font-weight:700;letter-spacing:.04em}
+.project-stage{padding-top:34px}
+.finished-stage{margin-top:34px;border-top:1px solid #cbdde8}
+.stage-title{display:flex;align-items:center;gap:13px;margin-bottom:18px}
+.stage-title>span{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:var(--midnight);color:#fff;font-family:var(--font);font-size:13px;font-weight:700}
+.finished-stage .stage-title>span{background:var(--blue)}
+.stage-title b,.stage-title small{display:block}
+.stage-title b{font-family:var(--font);font-size:18px;color:var(--midnight)}
+.stage-title small{font-size:13px;color:var(--muted)}
+.project-gallery{display:grid;grid-template-columns:repeat(12,1fr);gap:14px}
+.project-photo{grid-column:span 4;position:relative;overflow:hidden;border-radius:8px;background:#dbe5eb;min-height:260px}
+.project-photo.wide{grid-column:span 6}
+.damage-gallery .project-photo:not(.wide){grid-column:span 3}
+.project-photo.hero-photo{grid-column:span 8;grid-row:span 2;min-height:534px}
+.result-gallery .project-photo:not(.hero-photo){grid-column:span 4}
+.project-photo button,.detail-callout>button{display:block;width:100%;height:100%;border:0;background:none;cursor:zoom-in;padding:0}
+.project-photo img,.detail-callout img{width:100%;height:100%;display:block;object-fit:cover;transition:transform .35s ease}
+.project-photo button:hover img,.detail-callout>button:hover img{transform:scale(1.025)}
+.project-photo figcaption{position:absolute;inset-inline:0;bottom:0;padding:42px 16px 13px;color:#fff;font-size:14px;font-weight:600;background:linear-gradient(transparent,rgba(2,15,30,.8));pointer-events:none}
+.detail-callout{display:grid;grid-template-columns:minmax(240px,.7fr) 1.3fr;align-items:center;gap:34px;margin-top:40px;padding-top:40px;border-top:1px solid #cbdde8}
+.detail-callout>button{height:260px;border-radius:8px;overflow:hidden}
+.detail-callout p{color:var(--muted);font-size:16px;max-width:500px;margin-top:9px}
+.lightbox{position:fixed;inset:0;z-index:200;background:rgba(1,10,23,.94);display:none;align-items:center;justify-content:center;padding:64px 72px}
+.lightbox.open{display:flex}
+.lightbox img{display:block;max-width:min(1120px,100%);max-height:calc(100vh - 128px);object-fit:contain;border-radius:4px}
+.lightbox button{position:absolute;border:0;background:rgba(255,255,255,.12);color:#fff;cursor:pointer;display:grid;place-items:center}
+.lightbox-close{top:18px;inset-inline-end:20px;width:44px;height:44px;border-radius:50%;font-size:30px}
+.lightbox-prev,.lightbox-next{top:50%;transform:translateY(-50%);width:46px;height:64px;border-radius:6px;font-size:34px}
+.lightbox-prev{inset-inline-start:16px}.lightbox-next{inset-inline-end:16px}
 
 /* testimonials */
 .quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:40px}
@@ -213,7 +242,10 @@ footer .fin{border-top:1px solid rgba(255,255,255,.12);margin-top:36px;padding-t
 @media(max-width:900px){
   .steps,.steps.s5{grid-template-columns:1fr 1fr}
   .sol-grid,.sol-grid.g4{grid-template-columns:1fr 1fr}
-  .quotes,.gallery{grid-template-columns:1fr}
+  .quotes{grid-template-columns:1fr}
+  .case-head{align-items:flex-start;flex-direction:column;gap:14px}
+  .project-photo,.project-photo.wide,.damage-gallery .project-photo:not(.wide),.result-gallery .project-photo:not(.hero-photo){grid-column:span 6}
+  .project-photo.hero-photo{grid-column:span 12;grid-row:auto;min-height:420px}
   .founders,.compare,.contact-wrap,.branches,.trust3,.model{grid-template-columns:1fr}
   nav.links,.nav-cta .btn{display:none}
   .navbtn{display:flex}
@@ -222,6 +254,9 @@ footer .fin{border-top:1px solid rgba(255,255,255,.12);margin-top:36px;padding-t
 @media(max-width:560px){
   .steps,.steps.s5,.sol-grid,.sol-grid.g4{grid-template-columns:1fr}
   .brand{font-size:24px}.lang{display:none}
+  .project-photo,.project-photo.wide,.damage-gallery .project-photo:not(.wide),.result-gallery .project-photo:not(.hero-photo),.project-photo.hero-photo{grid-column:span 12;min-height:300px}
+  .detail-callout{grid-template-columns:1fr;gap:22px}.detail-callout>button{height:300px}
+  .lightbox{padding:58px 12px}.lightbox-prev,.lightbox-next{width:40px;height:54px;background:rgba(0,0,0,.5)}
 }
 
 /* mobile brevity: hide secondary sections, show one headline only, sticky contact bar */
