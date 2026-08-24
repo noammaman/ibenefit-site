@@ -201,6 +201,7 @@ section.block{padding:88px 0}
 .quote .stars{color:var(--azure);font-size:16px;margin-bottom:12px;letter-spacing:2px}
 .quote p{font-size:16px;color:var(--ink);margin-bottom:16px}
 .quote .who{font-family:var(--font);font-weight:600;font-size:14px;color:var(--muted)}
+.quote-dots{display:none}
 
 /* CTA band */
 .ctaband{background:linear-gradient(160deg,var(--blue),var(--midnight));color:#fff;border-radius:28px;padding:52px;text-align:center;position:relative;overflow:hidden}
@@ -264,6 +265,19 @@ footer .fin{border-top:1px solid rgba(255,255,255,.12);margin-top:36px;padding-t
   .hide-mobile{display:none!important}
   .hrotate>span:not(.is-active){display:none}
   body{padding-bottom:64px}
+  .testimonials-section{display:block!important;padding:64px 0}
+  .testimonials-section .wrap{padding-inline-end:0}
+  .testimonials-section h2.sec{padding-inline-end:24px;font-size:28px}
+  .testimonials-section .eyebrow{padding-inline-end:24px}
+  .quotes{display:flex;gap:12px;overflow-x:auto;overscroll-behavior-inline:contain;scroll-snap-type:x mandatory;scroll-padding-inline:0;padding:4px 0 18px;margin-top:28px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .quotes::-webkit-scrollbar{display:none}
+  .quote{flex:0 0 calc(100% - 36px);min-height:280px;display:flex;flex-direction:column;justify-content:flex-start;scroll-snap-align:start;scroll-snap-stop:always;padding:26px 24px;box-shadow:0 12px 28px rgba(3,4,94,.06)}
+  .quote:hover{transform:none}
+  .quote p{font-size:16px;line-height:1.75;margin-bottom:22px}
+  .quote .who{margin-top:auto}
+  .quote-dots{display:flex;justify-content:center;gap:8px;padding-inline-end:24px;margin-top:4px}
+  .quote-dots button{width:8px;height:8px;border:0;border-radius:50%;background:#b8c8d4;cursor:pointer;padding:0;transition:width .2s ease,background .2s ease}
+  .quote-dots button.active{width:24px;border-radius:999px;background:var(--blue)}
 }
 .mbar{display:none}
 .mbar a{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;padding:15px 10px;font-family:var(--font);font-weight:700;font-size:16px;color:#fff}

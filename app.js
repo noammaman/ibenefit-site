@@ -59,6 +59,36 @@
     });
   }
 
+  // Mobile testimonials: native swipe with scroll snapping and position dots.
+  var quotesTrack = document.querySelector('.testimonials-section .quotes');
+  var quotesDots = document.querySelector('.quote-dots');
+  if (quotesTrack && quotesDots) {
+    var quoteCards = Array.prototype.slice.call(quotesTrack.querySelectorAll('.quote'));
+    var isHebrew = document.documentElement.lang === 'he';
+    var dotButtons = quoteCards.map(function (_, index) {
+      var dot = document.createElement('button');
+      dot.type = 'button';
+      dot.setAttribute('aria-label', (isHebrew ? 'הצגת המלצה ' : 'Show testimonial ') + (index + 1));
+      if (index === 0) dot.classList.add('active');
+      dot.addEventListener('click', function () {
+        quoteCards[index].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+      });
+      quotesDots.appendChild(dot);
+      return dot;
+    });
+    var quoteObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting || entry.intersectionRatio < 0.6) return;
+        var active = quoteCards.indexOf(entry.target);
+        dotButtons.forEach(function (dot, index) {
+          dot.classList.toggle('active', index === active);
+          dot.setAttribute('aria-current', index === active ? 'true' : 'false');
+        });
+      });
+    }, { root: quotesTrack, threshold: [0.6] });
+    quoteCards.forEach(function (card) { quoteObserver.observe(card); });
+  }
+
   // Project gallery lightbox
   var galleryButtons = Array.prototype.slice.call(document.querySelectorAll('[data-lightbox]'));
   if (galleryButtons.length) {
